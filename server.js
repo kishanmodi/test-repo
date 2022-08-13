@@ -22,7 +22,6 @@ app.get('/get', function (req, res) {
 			res.send({ weather: null, error: 'Error, please try again', code: 404 });
 		} else {
 			let weather = body;
-			console.log(weather);
 			res.send(weather);
 		}
 	});

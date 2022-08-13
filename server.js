@@ -2,7 +2,6 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const request = require('request');
 const app = express();
-const port = process.env.PORT || 3000;
 
 const apiKey = '4fd95260ee4e78352fea592ff624e953';
 
@@ -27,6 +26,10 @@ app.get('/get', function (req, res) {
 	});
 });
 
-app.listen(port, () => {
-	console.log(`App listening at http://localhost:${port}`);
+app.listen(process.env.PORT || 3000, function () {
+	console.log(
+		'Express server listening on port %d in %s mode',
+		this.address().port,
+		app.settings.env
+	);
 });

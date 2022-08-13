@@ -27,6 +27,6 @@ app.get('/get', function (req, res) {
 	});
 });
 
-server.listen(port, () => {
+app.listen(port, () => {
 	console.log('App is running on port ' + port);
 });

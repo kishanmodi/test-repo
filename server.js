@@ -7,7 +7,11 @@ const PORT = process.env.PORT || '8080';
 const cors = require('cors');
 app.use(
 	cors({
-		origin: ['https://kishanmodi.github.io/', 'https://www.kishanmodi.me']
+		origin: [
+			'https://kishanmodi.github.io/',
+			'https://www.kishanmodi.me',
+			'http://localhost:3000'
+		]
 	})
 );
 const apiKey = '4fd95260ee4e78352fea592ff624e953';

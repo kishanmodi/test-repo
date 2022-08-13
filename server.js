@@ -8,9 +8,10 @@ const cors = require('cors');
 app.use(
 	cors({
 		origin: [
-			'https://kishanmodi.github.io/',
+			'https://kishanmodi.github.io',
 			'https://www.kishanmodi.me',
-			'http://localhost:3000'
+			'http://localhost:3000',
+			'https://kishanmodi.github.io/weather-app'
 		]
 	})
 );

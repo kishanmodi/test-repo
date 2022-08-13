@@ -4,6 +4,12 @@ const request = require('request');
 const app = express();
 const PORT = process.env.PORT || '8080';
 
+const cors = require('cors');
+app.use(
+	cors({
+		origin: ['https://kishanmodi.github.io/', 'https://www.kishanmodi.me']
+	})
+);
 const apiKey = '4fd95260ee4e78352fea592ff624e953';
 
 app.use(bodyParser.urlencoded({ extended: true }));

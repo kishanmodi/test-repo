@@ -2,7 +2,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const request = require('request');
 const app = express();
-const port = process.env.PORT || 8000;
+const PORT = process.env.PORT || '8080';
 
 const apiKey = '4fd95260ee4e78352fea592ff624e953';
 

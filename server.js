@@ -9,9 +9,11 @@ app.use(
 	cors({
 		origin: [
 			'https://kishanmodi.github.io',
+			'https://kishanmodi.me',
 			'https://www.kishanmodi.me',
 			'http://localhost:3000',
-			'https://kishanmodi.github.io/weather-app'
+			'https://kishanmodi.github.io/weather-app',
+			'https://kishanmodi.me/weather-app'
 		]
 	})
 );

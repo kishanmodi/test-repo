@@ -5,6 +5,8 @@ const app = express();
 const PORT = process.env.PORT || '8080';
 
 const cors = require('cors');
+const data = require('./cities.json');
+const unorm = require('unorm');
 app.use(
 	cors({
 		origin: [
@@ -32,11 +34,43 @@ app.get('/get', function (req, res) {
 
 	request(url, function (err, response, body) {
 		if (err) {
-			res.send({ weather: null, error: 'Error, please try again', code: 404 });
+			res.send({
+				weather: null,
+				error: 'Error, please try again',
+				code: 404
+			});
 		} else {
 			let weather = body;
 			res.send(weather);
 		}
+	});
+});
+
+app.get('/cities', (req, res) => {
+	res.json(data);
+});
+
+app.get('/searchCity', (req, res) => {
+	const params = req.query.city;
+	if (params.length === 0) {
+		res.send({ data: {}, success: false });
+	}
+	let count = 0;
+	const filteredCities = data.filter((item) => {
+		if (
+			unorm
+				.nfd(item.name)
+				.normalize('NFD')
+				.replace(/[\u0300-\u036f]/g, '')
+				.toLowerCase()
+				.includes(params.toLowerCase())
+		) {
+			return item;
+		}
+	});
+	res.send({
+		data: filteredCities.slice(0, 10),
+		success: true
 	});
 });
 

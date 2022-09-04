@@ -6,6 +6,7 @@ const PORT = process.env.PORT || '8080';
 
 const cors = require('cors');
 const data = require('./cities.json');
+const movies = require('./movies.json')
 const unorm = require('unorm');
 app.use(
 	cors({
@@ -74,6 +75,30 @@ app.get('/searchCity', (req, res) => {
 	});
 });
 
+
+app.get('/movies', (req, res) => {
+	const params = req.query.m;
+	if (params.length === 0) {
+		res.send({ data: {}, success: false });
+	}
+	let count = 0;
+	const filteredMovies = movies.filter((item) => {
+		if (
+			unorm
+				.nfd(item.movie_title)
+				.normalize('NFD')
+				.replace(/[\u0300-\u036f]/g, '')
+				.toLowerCase()
+				.includes(params.toLowerCase())
+		) {
+			return item;
+		}
+	});
+	res.send({
+		data: filteredMovies.slice(0, 10),
+		success: true
+	});
+});
 app.listen(PORT, () => {
 	console.log('App is running on port ' + PORT);
 });
